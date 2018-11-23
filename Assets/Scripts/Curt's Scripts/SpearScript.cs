@@ -11,12 +11,9 @@ public class SpearScript : MonoBehaviour {
         Thrown();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	
     void Thrown()
     {
-        rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+        rb.AddForce(transform.forward * speed);
     }
 }

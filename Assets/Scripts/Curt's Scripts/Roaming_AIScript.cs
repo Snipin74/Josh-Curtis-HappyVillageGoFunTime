@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,24 +10,23 @@ public class Roaming_AIScript : MonoBehaviour {
     Vector3 currentPos, randomPos;
     public GameObject obj;
     Rigidbody rb;
-    public float speed = 20;
+    [SerializeField] float  grazeTimer, acceptRange, wanderRadius;
+    float timerReset;
     bool isActive = false;
-    float graze = 5;
+    NavMeshAgent smith;
 
     // Use this for initialization
     void Start () {
-        
+        smith = GetComponent<NavMeshAgent>();
+        timerReset = grazeTimer;
         currentPos = gameObject.transform.position;
         randomPos = GetNewLocal();
         rb = GetComponent<Rigidbody>();
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        raycast();
-    }
+   
+
     private void FixedUpdate()
     {
         
@@ -34,50 +34,43 @@ public class Roaming_AIScript : MonoBehaviour {
         GetNewLocal();
         Roam();
     }
+
     Vector3 GetNewLocal()
     {
         //Vector3 position = new Vector3(Random.Range(0, 500), 0.5f, Random.Range(0, 500));
-        Vector3 position = new Vector3(currentPos.x + Random.Range(-10, 10), 0.5f, currentPos.z + Random.Range(-10, 10));
+        Vector3 position = new Vector3(currentPos.x + Random.Range(-wanderRadius, wanderRadius), 0.5f, currentPos.z + Random.Range(-wanderRadius, wanderRadius));
 
         return position;
     }
+
     void Roam()
     {
-        if (currentPos != randomPos)
+        if (Vector3.Distance(currentPos, randomPos) >= acceptRange)
         {
             isActive = true;
-            rb.AddForce(((randomPos - transform.position).normalized * speed));
+            smith.SetDestination(randomPos);
 
         }
-        else isActive = false; Grazing(); 
-       
-         
-       
+        else isActive = false;
+        Grazing(); 
     }
-    void raycast()
-    {
-        RaycastHit hit;
-        Physics.SphereCast(currentPos, 5f, transform.forward, out hit);
-        Debug.DrawRay(currentPos, transform.forward * 5, Color.blue);
-        Debug.DrawRay(currentPos, transform.forward * -5, Color.blue);
-        Debug.DrawRay(currentPos, transform.right * 5, Color.blue);
-        Debug.DrawRay(currentPos, transform.right * -5, Color.blue);
-    }
+
+   
+
     void Grazing()
     {
-        if (isActive == false)
+        if (!isActive)
         {
-            do
+            if (grazeTimer <= 0)
             {
-                graze--;
-            } while (graze > 0);
-            if(graze == 0)
-            {
+                grazeTimer = timerReset;
                 randomPos = GetNewLocal();
-                
+            }
+            else
+            {
+                grazeTimer -= Time.deltaTime;
             }
 
-            graze = 5;
         }
     }
 }

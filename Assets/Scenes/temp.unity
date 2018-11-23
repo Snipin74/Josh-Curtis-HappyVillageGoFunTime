@@ -112,109 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
---- !u!1 &605264783
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 605264784}
-  - component: {fileID: 605264788}
-  - component: {fileID: 605264787}
-  - component: {fileID: 605264786}
-  - component: {fileID: 605264785}
-  m_Layer: 0
-  m_Name: spear
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &605264784
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 605264783}
-  m_LocalRotation: {x: -0, y: -0, z: -0.44667354, w: 0.894697}
-  m_LocalPosition: {x: 0.38, y: 0.17, z: -0.52}
-  m_LocalScale: {x: 0.1, y: 1.5168172, z: 0.1}
-  m_Children: []
-  m_Father: {fileID: 1935081322}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -53.061}
---- !u!54 &605264785
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 605264783}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &605264786
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 605264783}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &605264787
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 605264783}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &605264788
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 605264783}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_NavMeshData: {fileID: 23800000, guid: d736f5b4539d88b4c8918b2436089ab4, type: 2}
 --- !u!1 &1054491212
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +126,7 @@ GameObject:
   - component: {fileID: 1054491215}
   - component: {fileID: 1054491214}
   - component: {fileID: 1054491213}
+  - component: {fileID: 1054491219}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -247,7 +146,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1054491212}
-  speed: 15
+  grazeTimer: 5
+  acceptRange: 5
+  wanderRadius: 30
 --- !u!54 &1054491214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -261,7 +162,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1054491215
 BoxCollider:
@@ -330,6 +231,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &1054491219
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1054491212}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1164069752
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,11 +341,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc95af9ca5eb87b499d2dcd1fe9ec9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1054491218}
-  heightOffset: 1.7
-  distance: 12
+  target: {fileID: 1935081322}
+  heightOffset: 3
+  distance: 10
   offsetFromWall: 0.1
-  maxDistance: 20
+  maxDistance: 10
   minDistance: 0.6
   xSpeed: 200
   ySpeed: 200
@@ -543,8 +465,9 @@ GameObject:
   - component: {fileID: 1935081321}
   - component: {fileID: 1935081320}
   - component: {fileID: 1935081319}
-  - component: {fileID: 1935081323}
   - component: {fileID: 1935081324}
+  - component: {fileID: 1935081325}
+  - component: {fileID: 1935081326}
   m_Layer: 0
   m_Name: hunter
   m_TagString: Untagged
@@ -616,26 +539,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 346.5871, y: 1, z: 323.3268}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 605264784}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1935081323
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1935081318}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1935081324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +554,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf8ce04dc8a989429a52693f8b72993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 605264783}
+  obj: {fileID: 1453984218954856, guid: 190a170a4acc86a4892b876ce1089755, type: 2}
+--- !u!114 &1935081325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1935081318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ff1823b3374734c910b0d243d0816d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveStatus: idle
+  walkByDefault: 1
+  gravity: 20
+  jumpSpeed: 10
+  runSpeed: 10
+  walkSpeed: 3
+  turnSpeed: 200
+  moveBackwardsMultiplier: 0.75
+--- !u!143 &1935081326
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1935081318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2032883627
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +627,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 182d1f9cae5af184a980e6c4d41ba6fe, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 2000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
