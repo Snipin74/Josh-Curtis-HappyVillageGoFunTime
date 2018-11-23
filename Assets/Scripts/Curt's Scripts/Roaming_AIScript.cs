@@ -38,7 +38,7 @@ public class Roaming_AIScript : MonoBehaviour {
     Vector3 GetNewLocal()
     {
         //Vector3 position = new Vector3(Random.Range(0, 500), 0.5f, Random.Range(0, 500));
-        Vector3 position = new Vector3(currentPos.x + Random.Range(-wanderRadius, wanderRadius), 0.5f, currentPos.z + Random.Range(-wanderRadius, wanderRadius));
+        Vector3 position = new Vector3(currentPos.x + Random.Range(-wanderRadius, wanderRadius), 1f, currentPos.z + Random.Range(-wanderRadius, wanderRadius));
 
         return position;
     }

@@ -7,27 +7,29 @@ using UnityEngine;
 
 public class SpearThrowingScript : MonoBehaviour {
     public GameObject obj;
-   
-    Vector3 spawnPos;
+    int maxSpearsOnScreen = 1;
+    Vector3 spawn;
     Quaternion rot;
     // Use this for initialization
     void Start () {
-        rot = obj.transform.rotation;
-        spawnPos = gameObject.transform.position;
-       
+        rot = transform.rotation;
+        spawn = transform.position;
     }
 	
 	
     private void FixedUpdate()
     {
         rot = obj.transform.rotation;
-        spawnPos = gameObject.transform.position;
+        spawn = transform.position;
     }
-    void ThrowSpear()
+    void Update()
     {
-        if(Input.GetKey(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            Instantiate(obj, spawnPos, rot);
+           GameObject spear = Instantiate(obj, spawn, rot);
+            spear.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z);
         }
     }
+    
 }
+//set spear spawn to the game object on player, change spear mechanics.
