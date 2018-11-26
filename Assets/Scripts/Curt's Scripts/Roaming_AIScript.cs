@@ -25,8 +25,7 @@ public class Roaming_AIScript : MonoBehaviour {
         
     }
 
-   
-
+ 
     private void FixedUpdate()
     {
         
