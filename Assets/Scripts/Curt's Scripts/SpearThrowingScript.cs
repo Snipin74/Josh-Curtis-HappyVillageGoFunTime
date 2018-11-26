@@ -6,30 +6,41 @@ using UnityEngine;
 
 
 public class SpearThrowingScript : MonoBehaviour {
-    public GameObject obj;
+    public GameObject obj, SpawnLoc;
     int maxSpearsOnScreen = 1;
     Vector3 spawn;
     Quaternion rot;
     // Use this for initialization
     void Start () {
-        rot = transform.rotation;
-        spawn = transform.position;
+        rot = SpawnLoc.transform.rotation;
+        spawn = SpawnLoc.transform.position;
     }
 	
 	
     private void FixedUpdate()
     {
-        rot = obj.transform.rotation;
-        spawn = transform.position;
+        rot = SpawnLoc.transform.rotation;
+        spawn = SpawnLoc.transform.position;
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        SpearSpawnLoc();
+    }
+    public void SpearSpawnLoc()
+    {
+        Debug.DrawRay(transform.position, transform.forward, Color.blue);
+        Ray Target = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //spear.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+    }
+    //ignore this void
+    void SpawnSpear()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
         {
-           GameObject spear = Instantiate(obj, spawn, rot);
-            spear.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+            GameObject spear = Instantiate(obj, spawn, rot);
         }
     }
-    
+ 
 }
-//set spear spawn to the game object on player, change spear mechanics.
+//change camera setting on hunter and possibly all playable characters off of mouse buttons
+//make it so the spearScript gets the location of input.mouseposition and and then throws the spear tht way when the throw button is pressed
