@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpearScript : MonoBehaviour {
     Rigidbody rb;
-    float speed = 100;
+    float speed = 15;
     // Use this for initialization
-    void Start () {
+    void Start() {
         rb = GetComponent<Rigidbody>();
         Thrown();
     }
@@ -19,8 +19,9 @@ public class SpearScript : MonoBehaviour {
     {
         rb.AddForce(transform.up * speed, ForceMode.Impulse);
     }
-    void Ded()
-    {
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        
     }
 }

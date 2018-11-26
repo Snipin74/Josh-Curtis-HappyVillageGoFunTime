@@ -3,36 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 [RequireComponent(typeof(Rigidbody))]
 
-public class Roaming_AIScript : MonoBehaviour {
+public class rabbitScript : MonoBehaviour {
+
     Vector3 currentPos, randomPos;
     public GameObject obj;
     Rigidbody rb;
-    [SerializeField] float  grazeTimer, acceptRange, wanderRadius;
+    [SerializeField] float grazeTimer, acceptRange, wanderRadius;
     float timerReset;
     bool isActive = false;
     NavMeshAgent smith;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         smith = GetComponent<NavMeshAgent>();
         timerReset = grazeTimer;
         currentPos = gameObject.transform.position;
         randomPos = GetNewLocal();
         rb = GetComponent<Rigidbody>();
-        
+
     }
 
-   
+
 
     private void FixedUpdate()
     {
-        
+        jump();
         currentPos = gameObject.transform.position;
         GetNewLocal();
         Roam();
+
     }
 
     Vector3 GetNewLocal()
@@ -52,10 +54,10 @@ public class Roaming_AIScript : MonoBehaviour {
 
         }
         else isActive = false;
-        Grazing(); 
+        Grazing();
     }
 
-   
+
 
     void Grazing()
     {
@@ -73,7 +75,22 @@ public class Roaming_AIScript : MonoBehaviour {
 
         }
     }
+    void jump()
+    {
+        float jumpPower = 2;
+        float jumptimer = 4;
+        do
+        {
 
+            jumptimer -= Time.deltaTime;
+
+        } while (jumptimer > 0);
+        if (jumptimer == 0)
+        {
+            rb.AddForce(transform.up * jumpPower, ForceMode.Impulse);
+            
+        }
+    }
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("weapon"))
