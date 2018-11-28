@@ -20,8 +20,8 @@ public class SpearScript : MonoBehaviour {
         rb.AddForce(transform.up * speed, ForceMode.Impulse);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision col)
     {
-        
+        rb.velocity = Vector3.zero;
     }
 }

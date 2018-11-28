@@ -5,15 +5,18 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class rabbitScript : MonoBehaviour {
+public class rabbitScript : MonoBehaviour
+{
 
-    Vector3 currentPos, randomPos;
+    Vector3 currentPos, randomPos, jumpPos;
     public GameObject obj;
     Rigidbody rb;
     [SerializeField] float grazeTimer, acceptRange, wanderRadius;
     float timerReset;
     bool isActive = false;
     NavMeshAgent smith;
+    float jumpPower = 20;
+    float jumptimer = 4;
 
     // Use this for initialization
     void Start()
@@ -22,10 +25,19 @@ public class rabbitScript : MonoBehaviour {
         timerReset = grazeTimer;
         currentPos = gameObject.transform.position;
         randomPos = GetNewLocal();
+        jumpPos = null;
         rb = GetComponent<Rigidbody>();
 
     }
+    private void Update()
+    {
+        do
+        {
 
+            jumptimer -= Time.deltaTime;
+
+        } while (jumptimer > 0);
+    }
 
 
     private void FixedUpdate()
@@ -77,25 +89,27 @@ public class rabbitScript : MonoBehaviour {
     }
     void jump()
     {
-        float jumpPower = 2;
-        float jumptimer = 4;
-        do
+        
+        
+        if (jumptimer <= 0)
         {
-
-            jumptimer -= Time.deltaTime;
-
-        } while (jumptimer > 0);
-        if (jumptimer == 0)
-        {
-            rb.AddForce(transform.up * jumpPower, ForceMode.Impulse);
-            
+            rb.AddForce(, ForceMode.Impulse);
+            resetTimer();
         }
     }
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("weapon"))
         {
-            Destroy(gameObject);
+            ded();
         }
     }
-}
+    void ded()
+    {
+        Destroy(gameObject);
+    }
+    void resetTimer()
+    {
+        jumptimer = 4;
+    }
+}//make rabbit jump

@@ -77,7 +77,11 @@ public class Roaming_AIScript : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("weapon"))
         {
-            Destroy(gameObject);
+            ded();
         }
+    }
+    void ded()
+    {
+        Destroy(gameObject);
     }
 }

@@ -40,5 +40,3 @@ public class SpearThrowingScript : MonoBehaviour {
     }
  
 }
-//change camera setting on hunter and possibly all playable characters off of mouse buttons
-//make it so the spearScript gets the location of input.mouseposition and and then throws the spear tht way when the throw button is pressed.-= speartarget
