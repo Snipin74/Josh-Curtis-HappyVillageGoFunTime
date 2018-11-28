@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class rabbitScript : MonoBehaviour
+public class SquirrelScript : MonoBehaviour
 {
 
     Vector3 currentPos, randomPos, jumpPos;
@@ -25,7 +25,7 @@ public class rabbitScript : MonoBehaviour
         timerReset = grazeTimer;
         currentPos = gameObject.transform.position;
         randomPos = GetNewLocal();
-        jumpPos = null;
+       //jumpPos = null;
         rb = GetComponent<Rigidbody>();
 
     }
@@ -93,7 +93,7 @@ public class rabbitScript : MonoBehaviour
         
         if (jumptimer <= 0)
         {
-            rb.AddForce(, ForceMode.Impulse);
+          //  rb.AddForce(, ForceMode.Impulse);
             resetTimer();
         }
     }

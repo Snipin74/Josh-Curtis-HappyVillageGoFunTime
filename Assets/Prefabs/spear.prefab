@@ -9,21 +9,22 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1453984218954856}
+  m_RootGameObject: {fileID: 1608787782196140}
   m_IsPrefabAsset: 1
---- !u!1 &1453984218954856
+--- !u!1 &1608787782196140
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4405043068068964}
-  - component: {fileID: 33924479938621238}
-  - component: {fileID: 23455404553243424}
-  - component: {fileID: 136621895376070942}
-  - component: {fileID: 54119624715572724}
-  - component: {fileID: 114484997674849648}
+  - component: {fileID: 4502528194095570}
+  - component: {fileID: 33514188315728456}
+  - component: {fileID: 23285254819876900}
+  - component: {fileID: 136899719285308376}
+  - component: {fileID: 54955052625751630}
+  - component: {fileID: 114703045594896048}
+  - component: {fileID: 114356883419249674}
   m_Layer: 0
   m_Name: spear
   m_TagString: weapon
@@ -31,12 +32,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4405043068068964
+--- !u!4 &4502528194095570
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1453984218954856}
+  m_GameObject: {fileID: 1608787782196140}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 346.9671, y: 1.17, z: 322.80682}
   m_LocalScale: {x: 0.1, y: 1.5, z: 0.1}
@@ -44,12 +45,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!23 &23455404553243424
+--- !u!23 &23285254819876900
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1453984218954856}
+  m_GameObject: {fileID: 1608787782196140}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -79,19 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33924479938621238
+--- !u!33 &33514188315728456
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1453984218954856}
+  m_GameObject: {fileID: 1608787782196140}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54119624715572724
+--- !u!54 &54955052625751630
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1453984218954856}
+  m_GameObject: {fileID: 1608787782196140}
   serializedVersion: 2
   m_Mass: 10
   m_Drag: 0
@@ -101,23 +102,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114484997674849648
+--- !u!114 &114356883419249674
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1453984218954856}
+  m_GameObject: {fileID: 1608787782196140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3579e5f799588a54ba738b4de1d1bd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObj: {fileID: 1608787782196140}
+  pooledAmt: 5
+--- !u!114 &114703045594896048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1608787782196140}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a317fc4748260e249adfdbd621218252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136621895376070942
+--- !u!136 &136899719285308376
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1453984218954856}
+  m_GameObject: {fileID: 1608787782196140}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
