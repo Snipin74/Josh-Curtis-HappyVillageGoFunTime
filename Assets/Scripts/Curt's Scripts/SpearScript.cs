@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpearScript : MonoBehaviour {
     Rigidbody rb;
     float speed = 15;
+    bool stopped = false;
+    bool hasFired = false;
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -17,11 +19,27 @@ public class SpearScript : MonoBehaviour {
 
     void Thrown()
     {
-        rb.AddForce(transform.up * speed, ForceMode.Impulse);
+        if(stopped == false)
+        {
+            
+            rb.AddForce(transform.up * speed, ForceMode.Impulse);
+        }
+        
     }
 
-    private void OnCollisionStay(Collision col)
+    private void OnCollisionEnter(Collision col)
     {
-        rb.velocity = Vector3.zero;
+        if (col.gameObject.CompareTag("Player") && hasFired == true)
+        {
+            gameObject.SetActive(false);
+
+        }else if (col.gameObject.CompareTag("animal") || col.gameObject.CompareTag("ground"))
+        {
+            hasFired = true;
+            stopped = true;
+            rb.velocity = Vector3.zero;
+        }
+        
     }
+    
 }

@@ -9,6 +9,8 @@ TagManager:
   - weapon
   - spearTip
   - water
+  - animal
+  - ground
   layers:
   - Default
   - TransparentFX
