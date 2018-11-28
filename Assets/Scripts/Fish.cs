@@ -24,6 +24,7 @@ public class Fish : MonoBehaviour
         RandomPos = GetNewLocation();
         Body = GetComponent<Rigidbody>();
         timerReset = StopTimer;
+       
     }
 
     private void FixedUpdate()
@@ -68,5 +69,8 @@ public class Fish : MonoBehaviour
             }
         }
     }
-
+    private void Update()
+    {
+        transform.Rotate(90, 0, 0);
+    }
 }
