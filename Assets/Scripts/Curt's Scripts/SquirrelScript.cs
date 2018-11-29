@@ -15,8 +15,7 @@ public class SquirrelScript : MonoBehaviour
     float timerReset;
     bool isActive = false;
     NavMeshAgent smith;
-    float jumpPower = 20;
-    float jumptimer = 4;
+   
 
     // Use this for initialization
     void Start()
@@ -29,20 +28,12 @@ public class SquirrelScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
     }
-    private void Update()
-    {
-        do
-        {
-
-            jumptimer -= Time.deltaTime;
-
-        } while (jumptimer > 0);
-    }
+   
 
 
     private void FixedUpdate()
     {
-        jump();
+        
         currentPos = gameObject.transform.position;
         GetNewLocal();
         Roam();
@@ -87,16 +78,7 @@ public class SquirrelScript : MonoBehaviour
 
         }
     }
-    void jump()
-    {
-        
-        
-        if (jumptimer <= 0)
-        {
-          //  rb.AddForce(, ForceMode.Impulse);
-            resetTimer();
-        }
-    }
+  
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("weapon"))
@@ -108,8 +90,5 @@ public class SquirrelScript : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    void resetTimer()
-    {
-        jumptimer = 4;
-    }
-}//make rabbit jump
+   
+}

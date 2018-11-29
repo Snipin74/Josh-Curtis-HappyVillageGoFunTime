@@ -4,36 +4,49 @@ using UnityEngine;
 
 public class SpearScript : MonoBehaviour {
     Rigidbody rb;
-    float speed = 15;
+    float speed = 25;
     bool stopped = false;
     bool hasFired = false;
+    [SerializeField] float throwTimer;
+    private float timerReset;
+    float DedTimer = 7;
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody>();
         Thrown();
+        timerReset = throwTimer;
+    }
+    private void Update()
+    {
+        despawn();
     }
     private void FixedUpdate()
     {
         Thrown();
+        if (throwTimer > 0)
+        {
+            throwTimer -= Time.deltaTime;
+        }
     }
 
     void Thrown()
     {
-        if(stopped == false)
+        if(!stopped)
         {
-            
-            rb.AddForce(transform.up * speed, ForceMode.Impulse);
+            rb.AddForce(transform.forward * speed, ForceMode.Impulse);
         }
         
     }
+    
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("Player") && hasFired == true)
+        Debug.Log(col.gameObject.name + " collision with spear");
+        if (col.gameObject.CompareTag("Player") && throwTimer <= 0)
         {
-            gameObject.SetActive(false);
-
-        }else if (col.gameObject.CompareTag("animal") || col.gameObject.CompareTag("ground"))
+            Destroy(gameObject);
+        }
+        else if (col.gameObject.CompareTag("animal") || col.gameObject.CompareTag("ground"))
         {
             hasFired = true;
             stopped = true;
@@ -41,5 +54,20 @@ public class SpearScript : MonoBehaviour {
         }
         
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && throwTimer <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    void despawn()
+    {
+        DedTimer -= Time.deltaTime;
+        if(DedTimer <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

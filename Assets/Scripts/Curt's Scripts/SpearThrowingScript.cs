@@ -12,10 +12,12 @@ public class SpearThrowingScript : MonoBehaviour {
     Quaternion rot;
     Ray Target;
     Vector3 speartarget;
+    Rigidbody rb;
     // Use this for initialization
     void Start () {
         rot = SpawnLoc.transform.rotation;
         spawn = SpawnLoc.transform.position;
+        rb = GetComponent<Rigidbody>();
     }
 	
 	
@@ -33,9 +35,12 @@ public class SpearThrowingScript : MonoBehaviour {
     
     void SpawnSpear()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButtonDown("Attack"))
         {
-            GameObject spear = Instantiate(obj, spawn , rot);
+            GameObject spear = Instantiate(obj, spawn , Quaternion.identity);
+            spear.transform.LookAt(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 100)), Vector3.up);
+            Debug.Log(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane)));
+            spear.GetComponent<Rigidbody>().velocity = rb.velocity;
         }
     }
  
