@@ -28,20 +28,19 @@ public class SpearThrowingScript : MonoBehaviour {
     }
     void Update()
     {
-        
         SpawnSpear();
     }
    
     
     void SpawnSpear()
     {
-        if (Input.GetButtonDown("Attack") && gameManager.instance.getControlled() == gameObject)
+        if (Input.GetButtonDown("Attack") && gameManager.instance.getControlled().name == gameObject.name)
         {
             GameObject spear = PoolManager.Instance.GetObjectForType("Spear 1", false);
             spear.transform.position = spawn;
             spear.transform.rotation = Quaternion.identity;
             spear.transform.LookAt(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 100)), Vector3.up);
-            Debug.Log(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane)));
+            spear.GetComponent<Rigidbody>().AddForce(spear.transform.forward * 300, ForceMode.Impulse);
             spear.GetComponent<Rigidbody>().velocity = rb.velocity;
         }
     }
