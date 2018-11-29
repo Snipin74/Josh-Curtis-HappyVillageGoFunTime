@@ -15,11 +15,14 @@ public class SquirrelScript : MonoBehaviour
     float timerReset;
     bool isActive = false;
     NavMeshAgent smith;
+
+    private ScoreManager sMan;
    
 
     // Use this for initialization
     void Start()
     {
+        sMan = FindObjectOfType<ScoreManager>();
         smith = GetComponent<NavMeshAgent>();
         timerReset = grazeTimer;
         currentPos = gameObject.transform.position;
@@ -84,11 +87,12 @@ public class SquirrelScript : MonoBehaviour
         if (col.gameObject.CompareTag("weapon"))
         {
             ded();
+            sMan.GiveSquirrel();
         }
     }
     void ded()
     {
-        Destroy(gameObject);
+        PoolManager.Instance.PoolObject(gameObject);
     }
    
 }

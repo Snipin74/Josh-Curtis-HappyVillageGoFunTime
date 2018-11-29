@@ -41,10 +41,9 @@ public class SpearScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
-        Debug.Log(col.gameObject.name + " collision with spear");
         if (col.gameObject.CompareTag("Player") && throwTimer <= 0)
         {
-            Destroy(gameObject);
+            PoolManager.Instance.PoolObject(gameObject);
         }
         else if (col.gameObject.CompareTag("animal") || col.gameObject.CompareTag("ground"))
         {
@@ -59,7 +58,8 @@ public class SpearScript : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player") && throwTimer <= 0)
         {
-            Destroy(gameObject);
+            PoolManager.Instance.PoolObject(gameObject);
+            
         }
     }
     void despawn()
@@ -67,7 +67,7 @@ public class SpearScript : MonoBehaviour {
         DedTimer -= Time.deltaTime;
         if(DedTimer <= 0)
         {
-            Destroy(gameObject);
+            PoolManager.Instance.PoolObject(gameObject);
         }
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 
 public class Roaming_AIScript : MonoBehaviour {
+
     Vector3 currentPos, randomPos;
     public GameObject obj;
     Rigidbody rb;
@@ -15,14 +16,17 @@ public class Roaming_AIScript : MonoBehaviour {
     bool isActive = false;
     NavMeshAgent smith;
 
+    private ScoreManager sMan;
+
     // Use this for initialization
     void Start () {
+
+        sMan = FindObjectOfType<ScoreManager>();
         smith = GetComponent<NavMeshAgent>();
         timerReset = grazeTimer;
         currentPos = gameObject.transform.position;
         randomPos = GetNewLocal();
         rb = GetComponent<Rigidbody>();
-        
     }
 
  
@@ -78,10 +82,13 @@ public class Roaming_AIScript : MonoBehaviour {
         if (col.gameObject.CompareTag("weapon"))
         {
             ded();
+            sMan.GiveDeer();
         }
     }
+    //spelled correctly and all
     void ded()
     {
-        Destroy(gameObject);
+        PoolManager.Instance.PoolObject(gameObject);
+        
     }
 }

@@ -22,7 +22,15 @@ public class ScoreManager : MonoBehaviour {
 
     public void GiveFish()
     {
-        scoreCount += 1;
+        AddPoints(1);
+    }
+    public void GiveDeer()
+    {
+        AddPoints(3);
+    }
+    public void GiveSquirrel()
+    {
+        AddPoints(1);
     }
 
     public void AddPoints(int pointsToAdd)

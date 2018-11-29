@@ -35,13 +35,17 @@ public class SpearThrowingScript : MonoBehaviour {
     
     void SpawnSpear()
     {
-        if (Input.GetButtonDown("Attack"))
+        if (Input.GetButtonDown("Attack") && gameManager.instance.getControlled() == gameObject)
         {
-            GameObject spear = Instantiate(obj, spawn , Quaternion.identity);
+            GameObject spear = PoolManager.Instance.GetObjectForType("Spear 1", false);
+            spear.transform.position = spawn;
+            spear.transform.rotation = Quaternion.identity;
             spear.transform.LookAt(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 100)), Vector3.up);
             Debug.Log(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane)));
             spear.GetComponent<Rigidbody>().velocity = rb.velocity;
         }
     }
+
+   
  
 }

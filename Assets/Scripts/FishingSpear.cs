@@ -19,12 +19,7 @@ public class FishingSpear : MonoBehaviour {
     public GameObject spearSpawn;
     public GameObject player;
 
-    // Use this for initialization
-    void Start () {
-
-
-	}
-
+  
     // Update is called once per frame
     void Update () {
 
@@ -43,7 +38,7 @@ public class FishingSpear : MonoBehaviour {
             transform.Rotate(-120, 0, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && gameManager.instance.getControlled() == gameObject)
         {
             keyHit = true;
             player.GetComponent<RPGCharacterController>().canWalk = false;
