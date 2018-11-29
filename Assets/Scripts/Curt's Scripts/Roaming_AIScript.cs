@@ -15,6 +15,8 @@ public class Roaming_AIScript : MonoBehaviour {
     float timerReset;
     bool isActive = false;
     NavMeshAgent smith;
+    [SerializeField] GameObject[] spawnLocations;
+    AnimalSpawn animalSpawn;
 
     private ScoreManager sMan;
 
@@ -27,6 +29,7 @@ public class Roaming_AIScript : MonoBehaviour {
         currentPos = gameObject.transform.position;
         randomPos = GetNewLocal();
         rb = GetComponent<Rigidbody>();
+        spawnLocations = GameObject.FindGameObjectsWithTag("SpawnLoc");
     }
 
  
@@ -89,6 +92,13 @@ public class Roaming_AIScript : MonoBehaviour {
     void ded()
     {
         PoolManager.Instance.PoolObject(gameObject);
-        
+    }
+
+    private void OnDisable()
+    {
+        spawnLocations = GameObject.FindGameObjectsWithTag("SpawnLoc");
+        int newSpot = Random.Range(0, spawnLocations.Length - 1);
+        animalSpawn = spawnLocations[newSpot].GetComponent<AnimalSpawn>();
+        animalSpawn.SpawnAtMe();
     }
 }

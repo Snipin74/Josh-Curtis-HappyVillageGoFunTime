@@ -11,6 +11,8 @@ TagManager:
   - water
   - animal
   - ground
+  - Barrel
+  - SpawnLoc
   layers:
   - Default
   - TransparentFX
