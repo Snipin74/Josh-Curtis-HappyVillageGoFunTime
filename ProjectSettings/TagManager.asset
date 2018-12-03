@@ -13,6 +13,7 @@ TagManager:
   - ground
   - Barrel
   - SpawnLoc
+  - UI
   layers:
   - Default
   - TransparentFX
