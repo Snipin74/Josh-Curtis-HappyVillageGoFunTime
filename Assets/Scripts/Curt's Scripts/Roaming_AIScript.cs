@@ -17,12 +17,15 @@ public class Roaming_AIScript : MonoBehaviour {
     NavMeshAgent smith;
     [SerializeField] GameObject[] spawnLocations;
     AnimalSpawn animalSpawn;
-
+    int HP = 10;
+    int currentHP;
+   
     private ScoreManager sMan;
-
+    
     // Use this for initialization
     void Start () {
 
+        currentHP = HP;
         sMan = FindObjectOfType<ScoreManager>();
         smith = GetComponent<NavMeshAgent>();
         timerReset = grazeTimer;
@@ -31,8 +34,12 @@ public class Roaming_AIScript : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         spawnLocations = GameObject.FindGameObjectsWithTag("SpawnLoc");
     }
+    private void Update()
+    {
+        ded();
+    }
 
- 
+
     private void FixedUpdate()
     {
         
@@ -80,18 +87,17 @@ public class Roaming_AIScript : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.CompareTag("weapon"))
-        {
-            ded();
-            sMan.GiveDeer();
-        }
-    }
+   
     //spelled correctly and all
     void ded()
     {
-        PoolManager.Instance.PoolObject(gameObject);
+        if(currentHP <= 0)
+        {
+            sMan.GiveDeer();
+            PoolManager.Instance.PoolObject(gameObject);
+            currentHP = HP;
+        }
+       
     }
 
     private void OnDisable()
@@ -100,5 +106,23 @@ public class Roaming_AIScript : MonoBehaviour {
         int newSpot = Random.Range(0, spawnLocations.Length - 1);
         animalSpawn = spawnLocations[newSpot].GetComponent<AnimalSpawn>();
         animalSpawn.SpawnAtMe();
+    }
+
+    public void LoseHealth(int DamageAmount)
+    {
+        currentHP -= DamageAmount;
+        Debug.Log("DAMAGE!");
+    }
+    public void Killed()
+    {
+        sMan.GiveDeer();
+        PoolManager.Instance.PoolObject(gameObject);
+        currentHP = HP;
+        Debug.Log("DED!");
+    }
+    public void Slow()
+    {
+        rb.velocity = Vector3.zero;
+        Debug.Log("MA ASS!");
     }
 }

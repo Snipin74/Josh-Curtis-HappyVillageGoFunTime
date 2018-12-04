@@ -12,6 +12,9 @@ public class SpearScript : MonoBehaviour {
     private float timerReset;
     float DedTimer, dedReset;
     
+
+    private Roaming_AIScript Roam;
+    
     // Use this for initialization
     void Start() {
         DedTimer = dedReset = 4;
@@ -44,12 +47,43 @@ public class SpearScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("animal") || col.gameObject.CompareTag("ground"))
+        Roam = col.gameObject.GetComponent<Roaming_AIScript>();
+        if (!Roam)
+            return;
+
+        if (col.gameObject.CompareTag("ground") == true)
         {
             hasFired = true;
             stopped = true;
             rb.velocity = Vector3.zero;
+
+        }else if (col.gameObject.CompareTag("DeerHead") == true)
+        {
+            hasFired = true;
+            stopped = true;
+            rb.velocity = Vector3.zero;
+            Roam.LoseHealth(100);            
+                
+            
+        }else if (col.gameObject.CompareTag("DearGut") == true)
+        {
+            hasFired = true;
+            stopped = true;
+            rb.velocity = Vector3.zero;
+            Roam.LoseHealth(5);
+                
+            
         }
+        else if (col.gameObject.CompareTag("DeerRear") == true)
+        {
+            hasFired = true;
+            stopped = true;
+            rb.velocity = Vector3.zero;
+            Roam.Slow();
+                
+            
+        }
+
     }
 
     private void PoolMe()
@@ -78,4 +112,5 @@ public class SpearScript : MonoBehaviour {
             PoolMe();
         }
     }
+    
 }

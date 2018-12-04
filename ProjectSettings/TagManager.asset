@@ -13,6 +13,9 @@ TagManager:
   - ground
   - Barrel
   - SpawnLoc
+  - DeerHead
+  - DeerRear
+  - DearGut
   layers:
   - Default
   - TransparentFX
